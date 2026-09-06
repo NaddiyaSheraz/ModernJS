@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Behind the Scenes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<nav class="nav">
+  <div class="logo">
+    <img src="image/logoT.svg" alt="">
+    <span>Behind the Scenes</span>
+  </div>
+  <div class="navlinks">
+    <a href="#execution">Execution</a><a href="#scope">Scope</a><a href="#hoisting">Hoisting</a>
+    <a href="#this">this</a><a href="#memory">Memory</a><a href="#copy">Copies</a>
+  </div>
+</nav>
+</header>
+
+<main>
+<div class="hero">
+  <div>
+    <span class="badge">Basic → Intermediate → Advanced</span>
+    <h1>JavaScript<br>Behind the Scenes</h1>
+    <p>Execution Contexts, Call Stack, Scope Chain, Hoisting, TDZ, <code>this</code>, Functions, Memory Management aur Object References — easy Roman Urdu + English notes.</p>
+  </div>
+  <div class="hero-card">
+    <div class="flow">Code
+ ↓
+Execution Context
+ ↓
+Call Stack
+ ↓
+Scope / Scope Chain
+ ↓
+Hoisting + TDZ
+ ↓
+this
+ ↓
+Memory + References
+ ↓
+Shallow / Deep Copy</div>
+  </div>
+</div>
+
+<div class="layout">
+<aside>
+<h3>📚 Contents</h3>
+<a href="#execution">1. Execution Context</a>
+<a href="#global">2. Global Context</a>
+<a href="#phases">3. Two Phases</a>
+<a href="#stack">4. Call Stack</a>
+<a href="#scope">5. Scope</a>
+<a href="#scope-types">6. Scope Types</a>
+<a href="#scopechain">7. Scope Chain</a>
+<a href="#lexical">8. Lexical Scoping</a>
+<a href="#hoisting">9. Hoisting</a>
+<a href="#tdz">10. TDZ</a>
+<a href="#this">11. this Keyword</a>
+<a href="#functions">12. Regular vs Arrow</a>
+<a href="#primitives">13. Primitives</a>
+<a href="#references">14. References</a>
+<a href="#copy">15. Shallow vs Deep</a>
+<a href="#memory">16. Memory Management</a>
+<a href="#flow">17. Complete Flow</a>
+<a href="#revision">18. Revision</a>
+</aside>
+
+<div>
+<section id="execution">
+<h2>1. Execution Context</h2>
+<p><b>Execution Context</b> ek environment hota hai jahan JavaScript code ko execute/run kiya jata hai.</p>
+<div class="note">Simple words: JavaScript jab code run karti hai, to variables, functions aur code ko manage karne ke liye ek environment create hota hai. Isay Execution Context kehte hain.</div>
+<h3>Types</h3>
+<ol><li>Global Execution Context</li><li>Function Execution Context</li><li>Eval Execution Context — rarely used</li></ol>
+</section>
+
+<section id="global">
+<h2>2. Global Execution Context</h2>
+<p>Jab JavaScript script run hoti hai, sabse pehle <b>Global Execution Context</b> create hota hai.</p>
+<pre><button class="copy">Copy</button><code>const name = "Ali";
+
+function greet() {
+  console.log("Hello");
+}
+
+greet();</code></pre>
+<div class="note"><b>Important:</b> Global Execution Context sabse pehle create hota hai.</div>
+</section>
+
+<section id="phases">
+<h2>3. Execution Context ke 2 Phases</h2>
+<div class="grid">
+<div class="mini"><h3>Phase 1 — Creation</h3><p>JavaScript environment prepare karti hai. Variables/functions register hote hain, scope-related information set hoti hai aur <code>this</code> ki value determine hoti hai.</p></div>
+<div class="mini"><h3>Phase 2 — Execution</h3><p>Ab actual code execute hota hai aur assignments/function calls perform hote hain.</p></div>
+</div>
+<pre><button class="copy">Copy</button><code>let age = 20;
+console.log(age);</code></pre>
+</section>
+
+<section id="stack">
+<h2>4. Call Stack</h2>
+<p><b>Call Stack</b> JavaScript ka mechanism hai jo track karta hai ke kaunsa function currently execute ho raha hai.</p>
+<div class="note"><b>LIFO:</b> Last In, First Out</div>
+<pre><button class="copy">Copy</button><code>function first() {
+  second();
+}
+
+function second() {
+  third();
+}
+
+function third() {
+  console.log("Hello");
+}
+
+first();</code></pre>
+<p>Flow: <code>Global → first() → second() → third()</code>. Third complete hoga to stack se remove, phir second, phir first.</p>
+<h3>Stack Overflow</h3>
+<pre><button class="copy">Copy</button><code>function test() {
+  test();
+}
+test();</code></pre>
+<p>Infinite recursive calls eventually <b>Maximum call stack size exceeded</b> error de sakti hain.</p>
+</section>
+
+<section id="scope">
+<h2>5. Scope</h2>
+<p><b>Scope</b> ka matlab hai code ke kis part mein koi variable accessible hai.</p>
+<pre><button class="copy">Copy</button><code>const name = "Ali";
+
+function greet() {
+  console.log(name);
+}</code></pre>
+<p>Yahan <code>name</code> function ke andar accessible hai kyunki woh outer scope mein hai.</p>
+</section>
+
+<section id="scope-types">
+<h2>6. Types of Scope</h2>
+<h3>Global Scope</h3>
+<pre><button class="copy">Copy</button><code>const name = "Ali";
+console.log(name);</code></pre>
+<h3>Function Scope</h3>
+<pre><button class="copy">Copy</button><code>function test() {
+  const age = 20;
+  console.log(age);
+}
+
+// console.log(age); // Error</code></pre>
+<h3>Block Scope</h3>
+<pre><button class="copy">Copy</button><code>if (true) {
+  let age = 20;
+  const name = "Ali";
+}
+
+// console.log(age); // Error</code></pre>
+<h3><code>var</code> vs <code>let</code> vs <code>const</code></h3>
+<table><tr><th>Feature</th><th>var</th><th>let</th><th>const</th></tr>
+<tr><td>Function scoped</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>Block scoped</td><td>❌</td><td>✅</td><td>✅</td></tr>
+<tr><td>Redeclare</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>Reassign</td><td>✅</td><td>✅</td><td>❌</td></tr>
+<tr><td>Hoisted</td><td>✅</td><td>✅*</td><td>✅*</td></tr></table>
+<p class="muted">* <code>let</code> aur <code>const</code> hoisted hote hain, lekin initialization se pehle TDZ mein rehte hain.</p>
+</section>
+
+<section id="scopechain">
+<h2>7. Scope Chain</h2>
+<p>Agar variable current scope mein nahi milta, JavaScript outer scope mein search karti hai.</p>
+<pre><button class="copy">Copy</button><code>const country = "Pakistan";
+
+function outer() {
+  const city = "Karachi";
+
+  function inner() {
+    const name = "Ali";
+
+    console.log(name);
+    console.log(city);
+    console.log(country);
+  }
+
+  inner();
+}
+
+outer();</code></pre>
+<p><code>inner()</code> pehle apne scope, phir <code>outer()</code>, phir global scope mein search karta hai.</p>
+<div class="note"><b>Rule:</b> Inner scope outer variables access kar sakta hai, lekin outer scope normally inner scope ke variables access nahi kar sakta.</div>
+</section>
+
+<section id="lexical">
+<h2>8. Lexical Scoping</h2>
+<p>JavaScript <b>lexically scoped</b> language hai.</p>
+<p>Function ko variables ka access uski <b>code mein position</b> se determine hota hai, na ke function ko kahan se call kiya gaya.</p>
+<pre><button class="copy">Copy</button><code>const name = "Ali";
+
+function greet() {
+  console.log(name);
+}</code></pre>
+</section>
+
+<section id="hoisting">
+<h2>9. Hoisting</h2>
+<p><b>Hoisting</b> ka matlab hai JavaScript execution se pehle declarations ko apne scope/environment mein register karti hai.</p>
+<pre><button class="copy">Copy</button><code>console.log(x);
+var x = 10;
+
+// Output: undefined</code></pre>
+<div class="note"><b>Important:</b> Hoisting ka matlab literally code ko upar move karna nahi hai. Ye conceptual model hai jo creation phase mein declarations ko process hone ko explain karta hai.</div>
+<h3>Function Hoisting</h3>
+<pre><button class="copy">Copy</button><code>greet();
+
+function greet() {
+  console.log("Hello");
+}
+
+// Output: Hello</code></pre>
+</section>
+
+<section id="tdz">
+<h2>10. Temporal Dead Zone — TDZ</h2>
+<p><b>TDZ</b> woh period hai jab <code>let</code>/<code>const</code> binding scope mein exist karti hai lekin declaration/initialization se pehle access nahi ki ja sakti.</p>
+<pre><button class="copy">Copy</button><code>console.log(age);
+
+let age = 20;
+
+// ReferenceError</code></pre>
+<div class="note"><code>let/const declaration → TDZ → initialization → usable</code></div>
+</section>
+
+<section id="this">
+<h2>11. The <code>this</code> Keyword</h2>
+<p><code>this</code> ek special keyword hai. Regular functions mein iska value generally <b>function ko kis tarah call kiya gaya</b> is se determine hota hai.</p>
+<pre><button class="copy">Copy</button><code>const student = {
+  name: "Ali",
+
+  greet() {
+    console.log(this.name);
+  }
+};
+
+student.greet();
+
+// Output: Ali</code></pre>
+<div class="note">Object method ko <code>student.greet()</code> ki tarah call karne par method ke andar <code>this</code> us object ko refer karta hai.</div>
+<h3>Regular Function</h3>
+<pre><button class="copy">Copy</button><code>const student = {
+  name: "Ali",
+  greet: function () {
+    console.log(this.name);
+  }
+};
+
+student.greet(); // Ali</code></pre>
+<h3>Arrow Function</h3>
+<pre><button class="copy">Copy</button><code>const student = {
+  name: "Ali",
+  greet: () => {
+    console.log(this.name);
+  }
+};</code></pre>
+<p>Arrow function ka apna <code>this</code> nahi hota; woh surrounding lexical <code>this</code> use karta hai.</p>
+</section>
+
+<section id="functions">
+<h2>12. Regular Functions vs Arrow Functions</h2>
+<table><tr><th>Regular Function</th><th>Arrow Function</th></tr>
+<tr><td>Apna <code>this</code> ho sakta hai</td><td>Apna <code>this</code> nahi hota</td></tr>
+<tr><td><code>this</code> call ke tareeqe par depend karta hai</td><td>Outer lexical <code>this</code> use karta hai</td></tr>
+<tr><td>Apna <code>arguments</code> object hota hai</td><td>Apna <code>arguments</code> nahi hota</td></tr>
+<tr><td>Constructor ke taur par use ho sakta hai</td><td>Constructor nahi ban sakta</td></tr></table>
+</section>
+
+<section id="primitives">
+<h2>13. Primitive Values</h2>
+<p>JavaScript values ko broadly primitive values aur objects mein samjha jata hai.</p>
+<ul><li>String</li><li>Number</li><li>Boolean</li><li>Undefined</li><li>Null</li><li>Symbol</li><li>BigInt</li></ul>
+<pre><button class="copy">Copy</button><code>let age = 20;
+let name = "Ali";
+let isStudent = true;</code></pre>
+<p>Primitive values immutable hote hain.</p>
+</section>
+
+<section id="references">
+<h2>14. Object References</h2>
+<p>Objects reference values hote hain. Assignment se same object ka reference share ho sakta hai.</p>
+<pre><button class="copy">Copy</button><code>const student1 = {
+  name: "Ali"
+};
+
+const student2 = student1;
+
+student2.name = "Ahmed";
+
+console.log(student1.name);
+// Ahmed</code></pre>
+<div class="note">Dono variables same object ko refer kar rahe hain.</div>
+<h3>Primitive Copy</h3>
+<pre><button class="copy">Copy</button><code>let a = 10;
+let b = a;
+
+b = 20;
+
+console.log(a); // 10
+console.log(b); // 20</code></pre>
+</section>
+
+<section id="copy">
+<h2>15. Shallow Copy vs Deep Copy</h2>
+<h3>Shallow Copy</h3>
+<p>New outer object banta hai, lekin nested objects/arrays ke references share ho sakte hain.</p>
+<pre><button class="copy">Copy</button><code>const user1 = {
+  name: "Ali",
+  age: 20
+};
+
+const user2 = { ...user1 };
+
+user2.name = "Ahmed";
+
+console.log(user1.name);
+// Ali</code></pre>
+<h3>Nested Object Problem</h3>
+<pre><button class="copy">Copy</button><code>const user1 = {
+  name: "Ali",
+  address: {
+    city: "Karachi"
+  }
+};
+
+const user2 = { ...user1 };
+
+user2.address.city = "Lahore";
+
+console.log(user1.address.city);
+// Lahore</code></pre>
+<h3>Deep Copy</h3>
+<p>Modern JavaScript mein <code>structuredClone()</code> nested data ko deeply clone karne ke liye useful hai.</p>
+<pre><button class="copy">Copy</button><code>const user2 = structuredClone(user1);
+
+user2.address.city = "Lahore";
+
+console.log(user1.address.city);
+// Karachi</code></pre>
+<table><tr><th>Shallow Copy</th><th>Deep Copy</th></tr>
+<tr><td>Outer object new</td><td>Outer + nested data independently cloned</td></tr>
+<tr><td>Nested references share ho sakte hain</td><td>Nested references share nahi kiye jate</td></tr>
+<tr><td><code>{ ...obj }</code></td><td><code>structuredClone(obj)</code></td></tr></table>
+</section>
+
+<section id="memory">
+<h2>16. Memory Management</h2>
+<p>JavaScript automatically memory manage karti hai. Is process mein <b>Garbage Collection</b> important role play karti hai.</p>
+<pre><button class="copy">Copy</button><code>let user = {
+  name: "Ali"
+};
+
+user = null;</code></pre>
+<p>Agar object ka koi aur reachable reference nahi hai, to woh garbage collection ke liye eligible ho sakta hai.</p>
+<h3>Stack vs Heap — Conceptual Model</h3>
+<div class="grid">
+<div class="mini"><h3>Stack</h3><p>Execution-related information aur local bindings ko samajhne ke liye useful conceptual model.</p></div>
+<div class="mini"><h3>Heap</h3><p>Objects aur dynamically allocated data ke liye memory area ka conceptual model.</p></div>
+</div>
+<div class="note">Actual JavaScript engines ki memory implementation simple “primitives = stack, objects = heap” rule se zyada complex hoti hai.</div>
+</section>
+
+<section id="flow">
+<h2>17. Complete Flow — Sab Concepts Ek Sath</h2>
+<pre><button class="copy">Copy</button><code>const name = "Ali";
+
+function greet() {
+  const message = `Hello ${name}`;
+
+  function sayHello() {
+    console.log(message);
+  }
+
+  sayHello();
+}
+
+greet();</code></pre>
+<ol>
+<li>Global Execution Context create hota hai.</li>
+<li><code>name</code> aur <code>greet</code> environment mein register hote hain.</li>
+<li>Global code execute hota hai.</li>
+<li><code>greet()</code> call hota hai.</li>
+<li>Function Execution Context create hota hai.</li>
+<li><code>message</code> create hota hai.</li>
+<li><code>sayHello()</code> call hota hai.</li>
+<li>Naya execution context create hota hai.</li>
+<li><code>sayHello()</code> scope chain se <code>message</code> access karta hai.</li>
+<li><code>console.log()</code> execute hota hai.</li>
+<li><code>sayHello()</code> stack se remove hota hai.</li>
+<li><code>greet()</code> stack se remove hota hai.</li>
+</ol>
+</section>
+
+<section id="revision">
+<h2>18. ⭐ Quick Revision</h2>
+<div class="grid">
+<div class="mini"><b>Execution Context</b><p>Code execute karne ka environment.</p></div>
+<div class="mini"><b>Call Stack</b><p>Function execution track karta hai; LIFO.</p></div>
+<div class="mini"><b>Scope</b><p>Variable ki accessibility ka area.</p></div>
+<div class="mini"><b>Scope Chain</b><p>Variable na mile to outer scopes mein search.</p></div>
+<div class="mini"><b>Hoisting</b><p>Declarations execution se pehle register/process hoti hain.</p></div>
+<div class="mini"><b>TDZ</b><p><code>let/const</code> declaration se initialization tak inaccessible period.</p></div>
+<div class="mini"><b>this</b><p>Regular function mein call-site/context ke mutabiq value determine hoti hai.</p></div>
+<div class="mini"><b>Reference</b><p>Object variable ka object ko refer karna.</p></div>
+<div class="mini"><b>Shallow Copy</b><p>Outer copy; nested references share ho sakte hain.</p></div>
+<div class="mini"><b>Deep Copy</b><p>Nested data bhi independently clone.</p></div>
+</div>
+
+<h3>🧠 Mini Quiz</h3>
+<div class="quiz">
+<button onclick="showAnswer(this,'undefined')">1. var x = 10 se pehle console.log(x) ka output?</button>
+<button onclick="showAnswer(this,'ReferenceError')">2. let age = 20 se pehle age access karne par?</button>
+<button onclick="showAnswer(this,'Ahmed')">3. const b = a object reference ke baad b.name change karne se a.name?</button>
+<button onclick="showAnswer(this,'LIFO')">4. Call Stack ka principle?</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<footer>Built as a study website for JavaScript Behind the Scenes • Basic → Advanced</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const text=btn.parentElement.querySelector('code').innerText;
+    navigator.clipboard.writeText(text);
+    const old=btn.innerText; btn.innerText='Copied!';
+    setTimeout(()=>btn.innerText=old,900);
+  });
+});
+function showAnswer(btn, answer){
+  let next=btn.nextElementSibling;
+  if(next && next.classList.contains('answer')) next.remove();
+  else {
+    const div=document.createElement('div');
+    div.className='answer';
+    div.textContent='Answer: '+answer;
+    btn.insertAdjacentElement('afterend',div);
+  }
+}
+</script>
+</body>
+</html>
