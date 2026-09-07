@@ -1,14 +1,18 @@
 :root {
-    --bg: #0b1020;
-    --panel: #121a2d;
-    --panel2: #18233b;
-    --text: #edf2ff;
-    --muted: #aeb9d2;
-    --accent: #7c9cff;
-    --accent2: #62e6c4;
-    --border: #263453;
-    --code: #080c16;
-    --shadow: 0 16px 45px rgba(0, 0, 0, .25);
+    --bg: #ffffff;
+    --panel: #ecd5fb;
+    --panel2: #d4a8dd;
+
+    --text: #801b86;
+    --muted: #cb91cf;
+
+    --accent: #801b86;
+    --accent2: #a52aad;
+
+    --border: #c89ad0;
+    --code: #e1c7e6;
+
+    --shadow: 0 16px 45px rgba(229, 195, 230, 0.6);
 }
 
 * {
@@ -16,7 +20,7 @@
 }
 
 html {
-    scroll-behavior: smooth
+    scroll-behavior: auto;
 }
 
 body {
@@ -36,11 +40,12 @@ header {
     position: sticky;
     top: 0;
     z-index: 20;
-    background: rgba(11, 16, 32, .88);
+    background: var(--accent);
+    box-shadow: var(--border);
     backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border)
+    border-bottom: 1px solid var(--border);
+    
 }
-
 .nav {
     max-width: 1200px;
     margin: auto;
@@ -51,25 +56,19 @@ header {
     gap: 20px
 }
 
-/* .logo {
-    font-weight: 500;
-    letter-spacing: .3px;
-    display: flex;
-    width: 4rem;
-    background-color: antiquewhite;
-} */
 .logo {
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: .3px;
     display: flex;
     align-items: center;
     gap: 4px;
     white-space: nowrap;
     width: auto;
+    color: var(--text);
 }
 
 .logo span {
-    color: var(--accent2)
+    color: var(--bg);
 }
 
 .navlinks {
@@ -84,7 +83,7 @@ header {
 }
 
 .navlinks a:hover {
-    color: var(--text)
+    color: var(--bg)
 }
 
 .hero {
@@ -122,7 +121,7 @@ h1 {
 .hero-card {
     background: linear-gradient(145deg, var(--panel), var(--panel2));
     border: 1px solid var(--border);
-    padding: 25px;
+    padding: 10px;
     border-radius: 22px;
     box-shadow: var(--shadow)
 }
@@ -140,7 +139,7 @@ h1 {
     padding: 10px 22px 70px;
     display: grid;
     grid-template-columns: 245px 1fr;
-    gap: 30px
+    gap: 30px;
 }
 
 aside {
@@ -161,9 +160,10 @@ aside h3 {
 aside a {
     display: block;
     padding: 7px 9px;
-    color: var(--muted);
+    color: var(--text);
     font-size: 13px;
     border-radius: 8px
+
 }
 
 aside a:hover {
@@ -193,7 +193,7 @@ h3 {
 
 p,
 li {
-    color: #d6def1
+    color: #c551fa
 }
 
 .muted {
@@ -203,7 +203,8 @@ li {
 .note {
     border-left: 3px solid var(--accent2);
     padding: 12px 16px;
-    background: rgba(98, 230, 196, .05);
+    background: var(--panel2);
+    color: var(--bg);
     margin: 18px 0;
     border-radius: 0 10px 10px 0
 }
@@ -215,20 +216,20 @@ code {
 pre {
     position: relative;
     background: var(--code);
-    border: 1px solid #1d2941;
+    border: 1px solid #d191e9;
     border-radius: 13px;
     padding: 18px;
     overflow: auto;
-    color: #dce7ff
+    color: #73218a
 }
 
 .copy {
     position: absolute;
     right: 10px;
     top: 10px;
-    border: 1px solid #30405f;
-    background: #131d31;
-    color: #dce7ff;
+    border: 1px solid #d9b9ef;
+    background: #d5b3ec;
+    color: #4a0b6c;
     border-radius: 7px;
     padding: 5px 9px;
     cursor: pointer;
@@ -262,7 +263,12 @@ th {
     background: var(--panel2);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 17px
+    padding: 17px;
+    color: #f0eaf1;
+}
+
+.mini p{
+    color: #f0eaf1;
 }
 
 .quiz {
