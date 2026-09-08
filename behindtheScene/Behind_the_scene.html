@@ -404,41 +404,11 @@ console.log(b); // 20</code></pre>
         <section id="copy">
           <h2>10. Shallow Copy vs Deep Copy</h2>
           <h3>Shallow Copy</h3>
-          <p>New outer object banta hai, lekin nested objects/arrays ke references share ho sakte hain.</p>
-          <!-- <pre><button class="copy">Copy</button><code>const user1 = {
-  name: "Ali",
-  age: 20
-};
+          <p>Sirf outer object ki copy banti hai; andar ke nested objects same reference rakhte hain.</p>
 
-const user2 = { ...user1 };
-
-user2.name = "Ahmed";
-
-console.log(user1.name);
-// Ali</code></pre> -->
-          <h3>Nested Object Problem</h3>
-          <!-- <pre><button class="copy">Copy</button><code>const user1 = {
-  name: "Ali",
-  address: {
-    city: "Karachi"
-  }
-};
-
-const user2 = { ...user1 };
-
-user2.address.city = "Lahore";
-
-console.log(user1.address.city);
-// Lahore</code></pre> -->
           <h3>Deep Copy</h3>
-          <p>Modern JavaScript mein <code>structuredClone()</code> nested data ko deeply clone karne ke liye useful hai.
-          </p>
-          <!-- <pre><button class="copy">Copy</button><code>const user2 = structuredClone(user1);
+          <p>Pura object, including nested objects, ki alag copy banti hai.</p>
 
-user2.address.city = "Lahore";
-
-console.log(user1.address.city);
-// Karachi</code></pre> -->
           <table>
             <tr>
               <th>Shallow Copy</th>
@@ -466,28 +436,27 @@ console.log(user1.address.city);
 
         <section id="memory">
           <h2>11. Memory Management</h2>
-          <p>JavaScript automatically memory manage karti hai. Is process mein <b>Garbage Collection</b> important role
-            play karti hai.</p>
-          <pre><button class="copy">Copy</button><code>let user = {
-  name: "Ali"
-};
+          <p>Computer/JavaScript ki memory mein data ko allocate karna, use karna aur unnecessary data ko remove (free)
+            karna memory management kehlata hai.</p>
 
-user = null;</code></pre>
-          <p>Agar object ka koi aur reachable reference nahi hai, to woh garbage collection ke liye eligible ho sakta
-            hai.</p>
+          <p>
+          <ul>
+            <li>Memory Allocation → Program ko memory dena.</li>
+            <li>Memory Usage → Us memory mein data store/use karna.</li>
+            <li>Garbage Collection → Jo data ab use nahi ho raha, uski memory free karna.</li>
+          </ul>
+          </p>
           <h3>Stack vs Heap — Conceptual Model</h3>
           <div class="grid">
             <div class="mini">
               <h3>Stack</h3>
-              <p>Execution-related information aur local bindings ko samajhne ke liye useful conceptual model.</p>
+              <p>JavaScript mein function calls, local variables aur primitive values ko manage karta hai; iska memory management generally fast hota hai.</p>
             </div>
             <div class="mini">
               <h3>Heap</h3>
-              <p>Objects aur dynamically allocated data ke liye memory area ka conceptual model.</p>
+              <p>Objects, arrays aur functions jaise reference-type data ke liye memory hoti hai; JavaScript ka garbage collector unused heap memory ko clean karta hai.</p>
             </div>
           </div>
-          <div class="note">Actual JavaScript engines ki memory implementation simple “primitives = stack, objects =
-            heap” rule se zyada complex hoti hai.</div>
         </section>
 
       </div>
