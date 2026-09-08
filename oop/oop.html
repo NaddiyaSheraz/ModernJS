@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OOP in JavaScript | JS Notes</title>
+    <link rel="stylesheet" href="oop.css">
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+    <nav>
+        <div class="logo">
+            JS<span>Notes</span>
+        </div>
+        <ul>
+            <li><a href="#what">What is OOP?</a></li>
+            <li><a href="#pillars">Pillars</a></li>
+            <li><a href="#javascript">OOP in JS</a></li>
+            <!-- <li><a href="#revision">Revision</a></li> -->
+        </ul>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+
+        <div class="hero-content">
+            <h1>
+                OOP in <span>JavaScript</span>
+            </h1>
+            <p>
+                Understand Object-Oriented Programming with
+                simple English definitions, Roman Urdu explanations,
+                and practical JavaScript examples.
+            </p>
+        </div>
+
+    </header>
+
+    <main>
+        <!-- ================= WHAT IS OOP ================= -->
+
+        <section id="what">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>What is OOP?</h2>
+
+                    <p>
+                        Object-Oriented Programming explained simply.
+                    </p>
+
+                </div>
+
+
+                <div class="intro-card">
+
+                    <h3>
+                        Object-Oriented Programming
+                    </h3>
+
+                    <p>
+                        OOP stands for
+                        <strong>Object-Oriented Programming</strong>.
+                    </p>
+
+
+                    <div class="definition">
+
+                        <strong>English:</strong>
+
+                        OOP is a programming style where code is
+                        organized around objects that contain
+                        data and behavior.
+
+                    </div>
+
+
+                    <div class="definition">
+
+                        <strong>Roman Urdu:</strong>
+
+                        OOP ek programming style hai jisme code ko
+                        objects ki form mein organize kiya jata hai,
+                        aur objects ke andar data aur functions hote hain.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FOUR PILLARS ================= -->
+
+        <section id="pillars">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>4 Pillars of OOP</h2>
+
+                    <p>
+                        The four main concepts of Object-Oriented Programming.
+                    </p>
+
+                </div>
+
+
+                <div class="pillars">
+
+
+                    <!-- ENCAPSULATION -->
+
+                    <article class="pillar">
+
+                        <div class="pillar-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Encapsulation
+                        </h3>
+
+                        <p class="one-line">
+                            English: Bundling data and methods together.
+                        </p>
+
+                        <p>
+                            Encapsulation means keeping related data
+                            and methods together inside an object or class
+                            and controlling access to them.
+                        </p>
+
+                        <div class="roman">
+
+                            <strong>Roman Urdu:</strong>
+                            Kisi bhi related data aur methods ko ek object ya class mein rakhna Encapsulation kehlata
+                            hai
+
+                        </div>
+
+
+                        <div class="code-box">
+
+                            <pre>
+<span class="keyword">class</span> Student {
+
+    constructor(name) {
+        this.name = name;
+    }
+
+    study() {
+        console.log("Studying...");
+    }
+}
+</pre>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ABSTRACTION -->
+
+                    <article class="pillar">
+
+                        <div class="pillar-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Abstraction
+                        </h3>
+
+                        <p class="one-line">
+                            English: Hiding unnecessary details.
+                        </p>
+
+                        <p>
+                            Abstraction means hiding complex or
+                            unnecessary implementation details and
+                            showing only what is important.
+                        </p>
+
+                        <div class="roman">
+                            <strong>Roman Urdu:</strong>
+                            Agar hum program mein user ko sirf zaroori cheezein show karwain aur baqi internal details
+                            hide kar dein, to isay Abstraction kehte hain.
+                        </div>
+
+
+                        <div class="code-box">
+
+                            <pre>
+<span class="keyword">class</span> Car {
+
+    start() {
+        console.log("Car started");
+    }
+}
+
+<span class="keyword">const</span> car = <span class="keyword">new</span> Car();
+
+car.start();
+</pre>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- INHERITANCE -->
+
+                    <article class="pillar">
+
+                        <div class="pillar-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Inheritance
+                        </h3>
+
+                        <p class="one-line">
+                            English: Reusing another class's features.
+                        </p>
+
+                        <p>
+                            Inheritance allows one class to reuse
+                            properties and methods from another class.
+                        </p>
+
+                        <div class="roman">
+
+                            <strong>Roman Urdu:</strong>
+
+                            Ek class doosri class ki properties aur
+                            methods ko reuse kar sakti hai.
+
+                        </div>
+
+
+                        <div class="code-box">
+
+                            <pre>
+<span class="keyword">class</span> Animal {
+
+    eat() {
+        console.log("Eating...");
+    }
+}
+
+<span class="keyword">class</span> Dog <span class="keyword">extends</span> Animal {
+
+    bark() {
+        console.log("Woof!");
+    }
+}
+
+<span class="keyword">const</span> dog = <span class="keyword">new</span> Dog();
+
+dog.eat();
+dog.bark();
+</pre>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- POLYMORPHISM -->
+
+                    <article class="pillar">
+
+                        <div class="pillar-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Polymorphism
+                        </h3>
+
+                        <p class="one-line">
+                            English: Same method, different behavior.
+                        </p>
+                        <p>
+                            Polymorphism means the same method can
+                            behave differently depending on the object.
+                        </p>
+                        <div class="roman">
+                            <strong>Roman Urdu:</strong>
+                            Same method different objects mein different tarah behave kar sakta hai
+                        </div>
+                        <div class="code-box">
+                            <pre><span class="keyword">class</span> Dog {
+    sound() {
+        console.log("Dog barks");
+    }
+}
+
+<span class="keyword">class</span> Cat {
+    sound() {
+        console.log("Cat meows");
+    }
+}
+
+<span class="keyword">new</span> Dog().sound();
+<span class="keyword">new</span> Cat().sound();</pre>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= OOP IN JS ================= -->
+
+        <section id="javascript">
+
+            <div class="container">
+
+                <div class="js-oop">
+
+                    <h2>
+                        OOP in JavaScript
+                    </h2>
+
+                    <p>
+                        JavaScript supports Object-Oriented Programming
+                        using objects, classes, constructors, prototypes,
+                        inheritance and methods.
+                    </p>
+                    <p>
+                        JavaScript supports OOP, but it is not limited to OOP; developers can also use functional and
+                        other programming styles.
+                    </p>
+
+                    <div class="roman">
+
+                        <strong>Roman Urdu:</strong>
+
+                        JavaScript mein OOP objects, classes, constructors,
+                        prototypes, inheritance aur methods ki help se
+                        implement ki jati hai.
+
+                    </div>
+
+
+
+
+                    <div class="js-features">
+
+                        <div class="feature">
+                            Objects
+                        </div>
+
+                        <div class="feature">
+                            Classes
+                        </div>
+
+                        <div class="feature">
+                            Constructors
+                        </div>
+
+                        <div class="feature">
+                            Prototypes
+                        </div>
+
+                        <div class="feature">
+                            Inheritance
+                        </div>
+
+                        <div class="feature">
+                            Methods
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= EXAMPLE ================= -->
+        <section>
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        Simple OOP Example
+                    </h2>
+
+                    <p>
+                        Let's understand a class, object, property and method.
+                    </p>
+
+                </div>
+
+
+                <div class="intro-card">
+
+                    <div class="code-box">
+
+                        <pre>
+<span class="keyword">class</span> Person {
+
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    introduce() {
+        console.log(
+            `My name is ${this.name}`
+        );
+    }
+}
+
+
+<span class="keyword">const</span> person1 =
+    <span class="keyword">new</span> Person("Ali", 20);
+
+
+person1.introduce();
+</pre>
+
+                    </div>
+
+
+                    <div class="roman">
+
+                        <strong>Roman Urdu:</strong>
+
+                        Yahan humne Person naam ki class banayi.
+                        Constructor mein name aur age properties hain,
+                        jabke introduce() ek method hai. Phir
+                        <strong>new Person()</strong> ki help se object
+                        create kiya gaya.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        </section>
+    </main>
+
+    <!-- ================= CLASS IN JAVASCRIPT ================= -->
+
+    <section class="class-section" id="class">
+        <div class="container">
+            <div class="section-title">
+                <h2>Class in JavaScript</h2>
+                <p>Understand what a class is, why we use it and when to use it.</p>
+            </div>
+
+            <!-- What is Class -->
+            <div class="class-intro">
+                <div class="class-icon">
+                    C
+                </div>
+                <div>
+                    <h3>What is a Class?</h3>
+                    <p>
+                        A class is a blueprint or template used to create
+                        objects with similar properties and methods.
+                    </p>
+                    <div class="roman-box">
+                        <strong>Roman Urdu:</strong>
+                        Class ek blueprint ya template hoti hai jiske
+                        through hum same structure wale multiple objects
+                        bana sakte hain.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Class -->
+            <div class="class-grid">
+                <div class="class-info-card">
+                    <span class="info-number">01</span>
+                    <h3>Why do we use Class?</h3>
+                    <p>
+                        When we have multiple objects with the same
+                        properties and methods, a class helps us avoid
+                        writing the same code again and again.
+                    </p>
+                    <div class="roman-box">
+                        <strong>Roman Urdu:</strong>
+                        Jab humein same type ke multiple objects banane
+                        hon, to class code ko repeat hone se bachati hai.
+                    </div>
+                </div>
+                <div class="class-info-card">
+                    <span class="info-number">02</span>
+                    <h3>When to use Class?</h3>
+                    <p>
+                        Use a class when multiple objects share the same
+                        structure and behavior.
+                    </p>
+                    <div class="roman-box">
+                        <strong>Roman Urdu:</strong>
+                        Jab multiple objects ki properties aur methods
+                        same hon, tab class useful hoti hai.
+                    </div>
+                </div>
+            </div>
+            <!-- Example -->
+            <div class="class-example">
+                <div class="example-heading">
+                    <div>
+                        <span class="example-tag">Example</span>
+                        <h3>Student Class</h3>
+                        <p>
+                            One class can be used to create multiple
+                            student objects.
+                        </p>
+                    </div>
+                </div>
+                <div class="code-box">
+                    <pre>
+                        <span class="keyword">class</span> Student {
+
+                                constructor(name, age, course) {
+                                    this.name = name;
+                                    this.age = age;
+                                    this.course = course;
+                                }
+
+                                introduce() {
+                                    console.log(`My name is ${this.name}`);
+                                }
+                            }
+
+                        <span class="keyword">const</span> student1 =
+                        <span class="keyword">new</span> Student("Ali", 20, "JavaScript");
+                        <span class="keyword">const</span> student2 =
+                        <span class="keyword">new</span> Student("Sara", 22, "React");
+                        <span class="keyword">const</span> student3 =
+                        <span class="keyword">new</span> Student("Ahmed", 21, "Node.js");
+                    </pre>
+
+                </div>
+
+                <div class="roman-box example-explanation">
+                    <strong>Roman Urdu:</strong>
+                    Humne ek <strong>Student</strong> class banayi.
+                    Is class mein <strong>name, age aur course</strong>
+                    properties hain aur <strong>introduce()</strong>
+                    method hai.
+                    Phir isi ek class se humne
+                    <strong>student1, student2 aur student3</strong>
+                    objects create kiye.
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <p>
+            © 2026 <span>JSNotes</span> — Learn JavaScript with NS.
+        </p>
+    </footer>
+</body>
+
+</html>

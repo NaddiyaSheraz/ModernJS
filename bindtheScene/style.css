@@ -40,7 +40,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 20;
-    background: var(--accent);
+    /* background: var(--accent); */
     box-shadow: var(--border);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
@@ -53,22 +53,24 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .logo {
-    font-weight: 700;
+    font-weight: 900;
     letter-spacing: .3px;
     display: flex;
     align-items: center;
     gap: 4px;
     white-space: nowrap;
     width: auto;
-    color: var(--text);
+    font-size: 25px;
+    color: var(--accent);
 }
 
 .logo span {
-    color: var(--bg);
+    color: var(--accent2);
 }
 
 .navlinks {
@@ -79,11 +81,14 @@ header {
 
 .navlinks a {
     color: var(--muted);
-    font-size: 14px
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
 }
 
 .navlinks a:hover {
-    color: var(--bg)
+    color: var(--bg);
+    color: var(--accent2);
 }
 
 .hero {
