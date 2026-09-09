@@ -72,19 +72,7 @@
           <p><b>Call Stack</b> JavaScript ka mechanism hai jo track karta hai ke kaunsa function currently execute ho
             raha hai.</p>
           <div class="note"><b>LIFO:</b> Last In, First Out</div>
-          <pre><button class="copy">Copy</button><code>function first() {
-  second();
-}
-
-function second() {
-  third();
-}
-
-function third() {
-  console.log("Hello");
-}
-
-first();</code></pre>
+    
           <p>Flow: <code>Global → first() → second() → third()</code>. Third complete hoga to stack se remove, phir
             second, phir first.</p>
           <div class="note">Simple words: The Call Stack tracks which functions are currently executing and their order.
@@ -95,11 +83,7 @@ first();</code></pre>
           <h2>3. Scope</h2>
           <p><b>Scope</b> • Scope variable ki accessibility range ko kehte hain — yani variable ko code ke kis area mein
             access/use kiya ja sakta hai.</p>
-          <pre><button class="copy">Copy</button><code>const name = "Ali";
 
-function greet() {
-  console.log(name);
-}</code></pre>
           <p>here <code>name</code>is accessible inside the function because it is in the outer scope.</p>
           <div class="note">Simple words: Scope is the range where a variable can be accessed.</div>
 
@@ -171,23 +155,7 @@ console.log(name);</code></pre>
         <section id="scopechain">
           <h2>4. Scope Chain</h2>
           <p>Agar variable current scope mein nahi milta, JavaScript outer scope mein search karti hai.</p>
-          <!-- <pre><button class="copy">Copy</button><code>const country = "Pakistan";
-
-function outer() {
-  const city = "Karachi";
-
-  function inner() {
-    const name = "Ali";
-
-    console.log(name);
-    console.log(city);
-    console.log(country);
-  }
-
-  inner();
-}
-
-outer();</code></pre> -->
+         
           <p><code>inner()</code> pehle apne scope, phir <code>outer()</code>, phir global scope mein search karta hai.
           </p>
           <div class="note">Simple words: Scope Chain is the process of searching outer scopes when a variable isn’t
@@ -206,14 +174,7 @@ outer();</code></pre> -->
             jahan us context ke variables aur function declarations ka record hota hai.
           </p>
 
-          <!-- <pre><button class="copy">Copy</button><code>const name = "Ali";
-
-function greet() {
-  const message = "Hello";
-  console.log(name);
-  console.log(message);
-}</code></pre> -->
-          <div class="note">Variable Environment is the place where JavaScript keeps track of variables and function
+       <div class="note">Variable Environment is the place where JavaScript keeps track of variables and function
             declarations for an Execution Context.</div>
           <p>
             Yahan <code>name</code> Global Environment mein hai, jabke
@@ -226,23 +187,12 @@ function greet() {
           <h2>6. Hoisting</h2>
           <p><b>Hoisting</b> ka matlab hai JavaScript execution se pehle declarations ko apne scope/environment mein
             register karti hai.</p>
-          <!-- <pre><button class="copy">Copy</button><code>console.log(x);
-var x = 10;
-
-// Output: undefined</code></pre> -->
           <div class="note"><b>Important:</b> Hoisting ka matlab literally code ko upar move karna nahi hai. Ye
             conceptual model hai jo creation phase mein declarations ko process hone ko explain karta hai.</div>
 
           <div class="note">in short: Hoisting is JavaScript’s behavior of processing variable and function declarations
             before executing the code.</div>
           <h3>Function Hoisting</h3>
-          <!-- <pre><button class="copy">Copy</button><code>greet();
-
-function greet() {
-  console.log("Hello");
-}
-
-// Output: Hello</code></pre> -->
         </section>
 
         <!-- //TDZ -->
